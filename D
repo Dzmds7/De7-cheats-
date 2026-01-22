@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DE7 CHEATS</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 20px;
+    background: #0a0a0a;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+#panel {
+    max-width: 360px;
+    margin: 0 auto;
+    background: #141414;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 0 12px red;
+}
+
+h1 {
+    text-align: center;
+    color: red;
+    margin-bottom: 15px;
+}
+
+.section {
+    margin-bottom: 12px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 6px;
+    border: none;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+}
+
+button.active {
+    background: red;
+}
+
+button.inject {
+    background: darkred;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+label {
+    font-size: 13px;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+#status {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #0f0;
+}
+</style>
+</head>
+
+<body>
+
+<div id="panel">
+    <h1>DE7 CHEATS</h1>
+
+    <div class="section">
+        <button onclick="toggle(this)">ESP Esqueleto</button>
+        <button onclick="toggle(this)">ESP Box</button>
+        <button onclick="toggle(this)">ESP Vida</button>
+    </div>
+
+    <div class="section">
+        <button onclick="toggle(this)">Cabeça</button>
+        <button onclick="toggle(this)">Pescoço</button>
+        <button onclick="toggle(this)">Peito</button>
+    </div>
+
+    <div class="section">
+        <label>Precisão</label>
+        <input type="range" min="0" max="100" onchange="resetInject()">
+
+        <label>Distância</label>
+        <input type="range" min="0" max="500" onchange="resetInject()">
+    </div>
+
+    <button class="inject" onclick="inject()">INJETAR</button>
+    <div id="status"></div>
+</div>
+
+<script>
+let injected = false;
+let injecting = false;
+
+function toggle(btn) {
+    btn.classList.toggle("active");
+    resetInject();
+}
+
+function inject() {
+    if (injecting) return;
+
+    injecting = true;
+    injected = false;
+
+    const status = document.getElementById("status");
+    status.style.color = "#ff0";
+    status.innerText = "Injetando código...";
+
+    setTimeout(() => {
+        status.style.color = "#0f0";
+        status.innerText = "Códigos injetados com sucesso";
+        injecting = false;
+        injected = true;
+    }, 5000);
+}
+
+function resetInject() {
+    if (injecting || injected) {
+        document.getElementById("status").innerText = "";
+        injecting = false;
+        injected = false;
+    }
+}
+</script>
+
+</body>
+</html>
